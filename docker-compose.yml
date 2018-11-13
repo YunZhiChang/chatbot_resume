@@ -2,21 +2,21 @@ version: '3'
 services:
   db:
     build: 
-      context: ./FanPeter_Dev/dockerfile
+      context: ./Cinghongli_Dev/dockerfile
       dockerfile: dockerfile-mysql
     container_name: chatbot_db
     restart: always
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=akirapf3
+      - MYSQL_ROOT_PASSWORD=Cinghongli
     volumes:
-      - ./FanPeter_Dev/mysql_data:/var/lib/mysql
-      - ./FanPeter_Dev/mysql_init:/docker-entrypoint-initdb.d/
+      - ./Cinghongli_Dev/mysql_data:/var/lib/mysql
+      - ./Cinghongli_Dev/mysql_init:/docker-entrypoint-initdb.d/
 
   api:
     build: 
-      context: ./FanPeter_Dev/dockerfile
+      context: ./Cinghongli_Dev/dockerfile
       dockerfile: dockerfile-api
     container_name: chatbot_api
     user: root
@@ -30,23 +30,23 @@ services:
     links:
       - db
     volumes:
-      - ./FanPeter_Dev/code:/home/jovyan/work/
+      - ./Cinghongli_Dev/code:/home/jovyan/work/
 #    command: python /home/jovyan/work/code.py
     command: start-notebook.sh --NotebookApp.token=''
 
   redis:
     build: 
-      context: ./FanPeter_Line/dockerfile
+      context: ./Cinghongli_Line/dockerfile
       dockerfile: dockerfile-redis
     container_name: chatbot_redis
     ports:
       - "6379:6379"
     volumes:
-      - ./FanPeter_Line/redis/data:/data
-      - ./FanPeter_Line/redis/redis.config:/usr/local/etc/redis/redis.conf
+      - ./Cinghongli_Line/redis/data:/data
+      - ./Cinghongli_Line/redis/redis.config:/usr/local/etc/redis/redis.conf
   jupyter-tutorial:
     build: 
-      context: ./FanPeter_Line/dockerfile
+      context: ./Cinghongli_Line/dockerfile
       dockerfile: dockerfile-jupyter
     container_name: chatbot_line
     depends_on: 
@@ -60,11 +60,11 @@ services:
     command: start-notebook.sh --NotebookApp.token=''
 #    command: python /home/jovyan/work/test.py
     volumes:
-      - ./FanPeter_Line/code:/home/jovyan/work
+      - ./Cinghongli_Line/code:/home/jovyan/work
 
   ngrok-external-dns:
     build: 
-      context: ./FanPeter_Line/dockerfile
+      context: ./Cinghongli_Line/dockerfile
       dockerfile: dockerfile-ngrok
     container_name: chatbot_ngrok
     depends_on: 
