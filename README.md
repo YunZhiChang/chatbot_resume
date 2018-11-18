@@ -32,8 +32,8 @@ $ bash get_ngrok_url.sh  #抓取ngrok url
  - 開啟 API Server(ip:8880) 
  - 執行 Cinghong_Dev/code/code.ipynb -->Run   All
  #### step 5 : 
- - 開啟Line Server 
- - 執行 FanPeter_Line/code/app.ipynb -->     Run All
+ - 開啟 Line Server 
+ - 執行 Cinghong_Line/code/app.ipynb -->     Run All
  
 
 
