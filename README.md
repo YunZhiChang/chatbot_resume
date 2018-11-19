@@ -5,7 +5,7 @@
 #架構是從AWS專題延伸出來，將題庫的部分移除，Redis有保留，可以日後要應用時使用
 
 #專題連結 https://github.com/iii-cutting-edge-tech-lab/Chatbot_Project_cc103.git
-#docker-compose.yml 可開啟chatbot_line、chatbat_redis、chatbot_ngrok、chatbot_aip、chatbot_db等5個docker container
+#docker-compose.yml 可開啟chatbot_line、chatbot_redis、chatbot_ngrok、chatbot_aip、chatbot_db等5個docker container
  - #chatbot_line : 主要與line@官網溝通，設計的邏輯及樣板都是在此docker container 設計.
  - #chatbot_redis : 之前專題是用來儲存考題的 memoty storage. 
  - #chatbot_ngrok : 將line@傳送的https格式轉為 http 格式.
