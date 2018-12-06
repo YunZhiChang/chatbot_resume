@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[8]:
 
 
 """
@@ -16,15 +16,15 @@
 """
 
 
-# In[2]:
+# In[9]:
 
 
 #正式上線時要放在dockerfile中
-#get_ipython().system('pip install redis')
-#get_ipython().system('pip install line-bot-sdk')
+get_ipython().system('pip install redis')
+get_ipython().system('pip install line-bot-sdk')
 
 
-# In[3]:
+# In[10]:
 
 
 # #有想到運用方式時再使用
@@ -50,7 +50,7 @@
 #     decode_responses=True)
 
 
-# In[4]:
+# In[11]:
 
 
 """
@@ -170,12 +170,11 @@ import requests
 # In[ ]:
 
 
-#宣告並設定推播的 button_template_message (全域變數)
 button_template_message = CarouselTemplate(
             columns=[
                 CarouselColumn(
                     #置換成自己要用的照片
-                    thumbnail_image_url="https://ppt.cc/f9jZBx" %server_url,
+                    thumbnail_image_url="https://imgur.com/VNzAFmI" %server_url,
                     title='歡迎使用張雲智履歷機器人\n請使用下方功能選單\n或是按下方按鈕',
                     text='張雲智 個人資料',
                     actions=[
@@ -195,7 +194,6 @@ button_template_message = CarouselTemplate(
 
 
 
-
 # In[ ]:
 
 
@@ -204,7 +202,7 @@ button_template_message = CarouselTemplate(
 # #URI要改成想連結的URI
 flexBubbleContainerJsonString_INTRO ="""
 {
-       "type": "bubble",
+    "type": "bubble",
     "header": {
       "type": "box",
       "layout": "horizontal",
@@ -702,12 +700,13 @@ def handle_message(event):
 #             TextSendMessage(text="你要放的IT專長的文字")
 #             )
     
-#     # 結合旋轉門選單中的"yourName的專長"，進到flexbubble選單，按下"yourName 的其他專長"，會有文字"我想看yourName的其他專長"的輸入，當符合字串時判斷成立
+    # 結合旋轉門選單中的"yourName的專長"，進到flexbubble選單，按下"yourName 的其他專長"，會有文字"我想看yourName的其他專長"的輸入，當符合字串時判斷成立
     elif (event.message.text.find('more')!= -1):
             line_bot_api.reply_message(
                 event.reply_token,
                 flexBubbleSendMessage_INTRO
             )
+   
     # 收到不認識的訊息時，回覆原本的旋轉門菜單    
     else:         
         line_bot_api.reply_message(
