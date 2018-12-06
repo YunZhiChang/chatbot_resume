@@ -2,7 +2,7 @@ version: '3'
 services:
   db:
     build: 
-      context: ./Cinghongli_Dev/dockerfile
+      context: ./chatbot_dev/dockerfile
       dockerfile: dockerfile-mysql
     container_name: chatbot_db
     restart: always
@@ -11,12 +11,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=Cinghongli
     volumes:
-      - ./Cinghongli_Dev/mysql_data:/var/lib/mysql
-      - ./Cinghongli_Dev/mysql_init:/docker-entrypoint-initdb.d/
+      - ./chatbot_dev/mysql_data:/var/lib/mysql
+      - ./chatbot_dev/mysql_init:/docker-entrypoint-initdb.d/
 
   api:
     build: 
-      context: ./Cinghongli_Dev/dockerfile
+      context: ./chatbot_dev/dockerfile
       dockerfile: dockerfile-api
     container_name: chatbot_api
     user: root
@@ -30,23 +30,23 @@ services:
     links:
       - db
     volumes:
-      - ./Cinghongli_Dev/code:/home/jovyan/work/
+      - ./chatbot_dev/code:/home/jovyan/work/
 #    command: python /home/jovyan/work/code.py
     command: start-notebook.sh --NotebookApp.token=''
 
   redis:
     build: 
-      context: ./Cinghongli_Line/dockerfile
+      context: ./chatbot_line/dockerfile
       dockerfile: dockerfile-redis
     container_name: chatbot_redis
     ports:
       - "6379:6379"
     volumes:
-      - ./Cinghongli_Line/redis/data:/data
-      - ./Cinghongli_Line/redis/redis.config:/usr/local/etc/redis/redis.conf
+      - ./chatbot_line/redis/data:/data
+      - ./chatbot_line/redis/redis.config:/usr/local/etc/redis/redis.conf
   jupyter-tutorial:
     build: 
-      context: ./Cinghongli_Line/dockerfile
+      context: ./chatbot_line/dockerfile
       dockerfile: dockerfile-jupyter
     container_name: chatbot_line
     depends_on: 
@@ -60,17 +60,17 @@ services:
     command: start-notebook.sh --NotebookApp.token=''
 #    command: python /home/jovyan/work/test.py
     volumes:
-      - ./Cinghongli_Line/code:/home/jovyan/work
+      - ./chatbot_line/code:/home/jovyan/work
 
-  ngrok-external-dns:
-    build: 
-      context: ./Cinghongli_Line/dockerfile
-      dockerfile: dockerfile-ngrok
-    container_name: chatbot_ngrok
-    depends_on: 
-      - jupyter-tutorial
-    ports:
-      - "4040:4040"
-    command: ngrok http chatbot_line:5000
+#  ngrok-external-dns:
+#    build: 
+#      context: ./chatbot_line/dockerfile
+#      dockerfile: dockerfile-ngrok
+#    container_name: chatbot_ngrok
+#    depends_on: 
+#      - jupyter-tutorial
+#    ports:
+#      - "4040:4040"
+#    command: ngrok http chatbot_line:5000
 
 
