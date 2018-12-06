@@ -67,7 +67,7 @@ import os
 ip_location='chatbot_api'
 
 # 載入基礎設定檔，本機執行所以路徑可以相對位置
-secretFile=json.load(open("./secret_key",'r'))
+secretFile=json.load(open("/home/jovyan/work/secret_key",'r'))
 
 # 從linebot 套件包裡引用 LineBotApi 與 WebhookHandler 類別
 from linebot import (
@@ -505,8 +505,8 @@ bubbleContainer_intro= BubbleContainer.new_from_json_dict(json.loads(flexBubbleC
 flexBubbleSendMessage_INTRO =  FlexSendMessage(alt_text="張雲智 的個人介紹", contents=bubbleContainer_intro)
 
 # #WORK樣板封裝
-bubbleContainer_work= BubbleContainer.new_from_json_dict(json.loads(flexBubbleContainerJsonString_WORK))
-flexBubbleSendMessage_WORK =  FlexSendMessage(alt_text="張雲智 的學習經歷", contents=bubbleContainer_work)
+#bubbleContainer_work= BubbleContainer.new_from_json_dict(json.loads(flexBubbleContainerJsonString_WORK))
+#flexBubbleSendMessage_WORK =  FlexSendMessage(alt_text="張雲智 的學習經歷", contents=bubbleContainer_work)
 
 # #SKILLS樣板封裝
 # bubbleContainer_skills= BubbleContainer.new_from_json_dict(json.loads(flexBubbleContainerJsonString_SKILLS))
