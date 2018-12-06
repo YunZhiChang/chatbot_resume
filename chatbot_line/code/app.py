@@ -175,40 +175,25 @@ button_template_message = CarouselTemplate(
             columns=[
                 CarouselColumn(
                     #置換成自己要用的照片
-                    thumbnail_image_url="https://%s/images/yourPicture.gif" %server_url,
-                    #置換成自己的名字
-                    title='歡迎使用 李慶鴻 履歷機器人\n請使用下方功能選單\n或是按下方按鈕',
-                    text='李慶鴻 個人資料',
-                    actions=[
-                        PostbackTemplateAction(
-                            label='李慶鴻-個人資料',
-                            data="type=resume"
-                        ),
-                        PostbackTemplateAction(
-                            label='李慶鴻-學習經歷',
-                            data="type=work"
-                        )                     
-                    ]
-                ),
-                CarouselColumn(
-                    #置換成自己要用的照片
-                    thumbnail_image_url="https://%s/images/yourPicture.gif" %server_url,
-                    title='歡迎使用李慶鴻履歷機器人\n請使用下方功能選單\n或是按下方按鈕',
-                    text='李慶鴻 實作專題與調研',
+                    thumbnail_image_url="https://ppt.cc/f9jZBx" %server_url,
+                    title='歡迎使用張雲智履歷機器人\n請使用下方功能選單\n或是按下方按鈕',
+                    text='張雲智 個人資料',
                     actions=[
                         URITemplateAction(
-                            label='CC103 網工班專題-GitHub',
-                            uri='https://github.com/iii-cutting-edge-tech-lab/Chatbot_Project_cc103'
+                            label='張雲智的fb',
+                            uri='https://www.facebook.com/yunzhi.chang'
                         ),
                         URITemplateAction(
-                            label='Dropboxpaper',
+                            label='張雲智的dropbox paper',
                             #改成你的作業連結
-                            uri="https://paper.dropbox.com/folder/show/12_-e.1gg8YzoPEhbTkrhvQwJ2zz3XHPtTjQXLJApXRmDb4mHQ1PTbO0bx" 
+                            uri="https://paper.dropbox.com/doc/2018_11_16_DevOps--ATJ3EwrqZc_s9Y~~U~V0RnEhAg-ypG2tEUcrfc1aUUFQRjQq" 
                         )
                     ]
                 ),
                    ]
             )
+
+
 
 
 # In[ ]:
@@ -718,12 +703,11 @@ def handle_message(event):
 #             )
     
 #     # 結合旋轉門選單中的"yourName的專長"，進到flexbubble選單，按下"yourName 的其他專長"，會有文字"我想看yourName的其他專長"的輸入，當符合字串時判斷成立
-#     elif (event.message.text.find('我想看yourName的其他專長')!= -1):
-#         line_bot_api.reply_message(
-#             event.reply_token,
-#             TextSendMessage(text="你要放的其他專長的文字")
-#             )
-   
+    elif (event.message.text.find('more')!= -1):
+            line_bot_api.reply_message(
+                event.reply_token,
+                flexBubbleSendMessage_INTRO
+            )
     # 收到不認識的訊息時，回覆原本的旋轉門菜單    
     else:         
         line_bot_api.reply_message(
